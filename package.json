@@ -2,7 +2,10 @@
     "name": "ldf-syntax",
     "displayName": "LDF Syntax",
     "description": "LIN Description Syntax highlighting and snippets",
+    "keywords": ["ldf", "lin"],
+    "license": "MIT",
     "version": "0.1.0",
+    "preview": true,
     "engines": {
         "vscode": "^1.60.0"
     },
