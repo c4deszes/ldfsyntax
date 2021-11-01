@@ -11,7 +11,13 @@
 
 ### Syntax Highlighting
 
+The extension provides highlighting of LDF sections.
+
+![syntax-highlight](https://github.com/c4deszes/ldfsyntax/blob/docs/initial-features/images/syntax-highlight.jpg?raw=true)
+
 ### Snippets
+
+__TODO__: insert animation of snippet usage
 
 ---
 
