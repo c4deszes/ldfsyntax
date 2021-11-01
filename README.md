@@ -13,7 +13,7 @@
 
 The extension provides highlighting of LDF sections.
 
-![syntax-highlight](./images/syntax-highlight.jpg)
+![syntax-highlight](https://github.com/c4deszes/ldfsyntax/blob/docs/initial-features/images/syntax-highlight.jpg?raw=true)
 
 ### Snippets
 
