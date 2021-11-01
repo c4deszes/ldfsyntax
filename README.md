@@ -11,7 +11,13 @@
 
 ### Syntax Highlighting
 
+The extension provides highlighting of LDF sections.
+
+![syntax-highlight](./images/syntax-highlight.jpg)
+
 ### Snippets
+
+__TODO__: insert animation of snippet usage
 
 ---
 
