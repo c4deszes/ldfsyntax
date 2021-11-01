@@ -1,0 +1,451 @@
+{
+    "scopeName": "source.ldf",
+    "patterns": [
+        {
+            "include": "#comment"
+        },
+        {
+            "include": "#header_lin_description_file"
+        },
+        {
+            "include": "#header_protocol_version"
+        },
+        {
+            "include": "#header_language_version"
+        },
+        {
+            "include": "#header_speed"
+        },
+        {
+            "include": "#header_channel"
+        },
+        {
+            "include": "#nodes"
+        },
+        {
+            "include": "#signals"
+        },
+        {
+            "include": "#frames"
+        },
+        {
+            "include": "#event_triggered_frames"
+        },
+        {
+            "include": "#signal_encoding_types"
+        },
+        {
+            "include": "#signal_representations"
+        }
+    ],
+    "repository": {
+        "header_lin_description_file": {
+            "match": "LIN_description_file\\s*;",
+            "name": "keyword.control"
+        },
+        "header_protocol_version": {
+            "begin": "(LIN_protocol_version)[\\s]*=[\\s]*\"",
+            "captures": {
+                "1": {
+                    "name": "variable.parameter"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#ldf_version"
+                }
+            ],
+            "end": "\"[\\s]*;"
+        },
+        "header_language_version": {
+            "begin": "(LIN_language_version)[\\s]*=[\\s]*\"",
+            "captures": {
+                "1": {
+                    "name": "variable.parameter"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#ldf_version"
+                }
+            ],
+            "end": "\"\\s*;"
+        },
+        "header_speed": {
+            "begin": "(LIN_speed)[\\s]*=[\\s]*",
+            "captures": {
+                "1": {
+                    "name": "variable.parameter"
+                },
+                "2": {
+                    "name": "keyword.control"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#ldf_float"
+                }
+            ],
+            "end": "\\s*(kbps)\\s*;"
+        },
+        "header_channel": {
+            "match": "(Channel_name)\\s*=\\s*(\"\\w*\")\\s*;",
+            "captures": {
+                "1": {
+                    "name": "variable.parameter"
+                },
+                "2": {
+                    "name": "string"
+                }
+            }
+        },
+        "nodes": {
+            "begin": "(Nodes)\\s*{",
+            "captures": {
+                "1": {
+                    "name": "support.class"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#nodes_master"
+                },
+                {
+                    "include": "#nodes_slaves"
+                }
+            ],
+            "end": "\\s*}"
+        },
+        "nodes_master": {
+            "match": "(Master)\\s*:\\s*(\\w+)\\s*,\\s*([0-9]+(\\.[0-9]+)?\\s*ms)\\s*,\\s*([0-9]+(\\.[0-9]+)?\\s*ms)\\s*;",
+            "captures": {
+                "1": {
+                    "name": "support.function"
+                },
+                "2": {
+                    "name": "string"
+                },
+                "3": {
+                    "name": "constant.numeric"
+                },
+                "5": {
+                    "name": "constant.numeric"
+                }
+            }
+        },
+        "nodes_slaves": {
+            "begin": "(Slaves)\\s*:\\s*",
+            "captures": {
+                "1": {
+                    "name": "support.function"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#ldf_identifier"
+                }
+            ],
+            "end": "\\s*;"
+        },
+        "signals": {
+            "begin": "(Signals)\\s*{",
+            "captures": {
+                "1": {
+                    "name": "support.class"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#signal_definition"
+                }
+            ],
+            "end": "\\s*}"
+        },
+        "signal_definition": {
+            "begin": "(\\w+)\\s*:\\s*((?:0x[0-9]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9]+)|(?:[0-9]+))\\s*,\\s*(\\w+)\\s*(?:,)?",
+            "captures": {
+                "1": {
+                    "name": "support.function"
+                },
+                "2": {
+                    "name": "constant.numeric"
+                },
+                "3": {
+                    "name": "constant.numeric"
+                },
+                "4": {
+                    "name": "string"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#ldf_identifier"
+                }
+            ],
+            "end": "\\s*;"
+        },
+        "frames": {
+            "begin": "(Frames)\\s*{",
+            "captures": {
+                "1": {
+                    "name": "support.class"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#frame_definition"
+                }
+            ],
+            "end": "\\s*}"
+        },
+        "frame_definition": {
+            "begin": "(\\w+)\\s*:\\s*((?:0x[0-9]+)|(?:[0-9]+))\\s*,\\s*(\\w+)\\s*(?:,\\s*((?:0x[0-9]+)|(?:[0-9]+)))?\\s*{",
+            "captures": {
+                "1": {
+                    "name": "support.function"
+                },
+                "2": {
+                    "name": "constant.numeric"
+                },
+                "3": {
+                    "name": "string"
+                },
+                "4": {
+                    "name": "constant.numeric"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#frame_signal"
+                }
+            ],
+            "end": "\\s*}"
+        },
+        "frame_signal": {
+            "match": "(\\w+)\\s*,\\s*((?:0x[0-9]+)|(?:[0-9]+))\\s*;",
+            "captures": {
+                "1": {
+                    "name": "variable.parameter"
+                },
+                "2": {
+                    "name": "constant.numeric"
+                }
+            }
+        },
+        "event_triggered_frames": {
+            "begin": "(Event_triggered_frames)\\s*{",
+            "captures": {
+                "1": {
+                    "name": "support.class"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#event_triggered_frames_definition"
+                }
+            ],
+            "end": "\\s*}"
+        },
+        "event_triggered_frames_definition": {
+            "begin": "(\\w+)\\s*:\\s*(\\w+)\\s*,\\s*((?:0x[0-9]+)|(?:[0-9]+))\\s*,\\s*(\\w+)\\s*(?:,)?",
+            "captures": {
+                "1": {
+                    "name": "support.function"
+                },
+                "2": {
+                    "name": "variable.parameter"
+                },
+                "3": {
+                    "name": "constant.numeric"
+                },
+                "4": {
+                    "name": "string"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#ldf_identifier"
+                }
+            ],
+            "end": "\\s*;"
+        },
+        "signal_encoding_types": {
+            "begin": "(Signal_encoding_types)\\s*{",
+            "captures": {
+                "1": {
+                    "name": "support.class"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#signal_encoding_type"
+                }
+            ],
+            "end": "\\s*}"
+        },
+        "signal_encoding_type": {
+            "begin": "(\\w+)\\s*{",
+            "captures": {
+                "1": {
+                    "name": "support.function"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#signal_encoding_type_converter"
+                }
+            ],
+            "end": "\\s*}"
+        },
+        "signal_encoding_type_converter": {
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#signal_encoding_type_converter_logical"
+                },
+                {
+                    "include": "#signal_encoding_type_converter_physical"
+                }
+            ]
+        },
+        "signal_encoding_type_converter_logical": {
+            "match": "(logical_value)\\s*,\\s*((?:0x[0-9]+)|(?:[0-9]+))\\s*(?:,\\s*(\"[\\w ]*\"))?\\s*;",
+            "captures": {
+                "1": {
+                    "name": "variable.parameter"
+                },
+                "2": {
+                    "name": "constant.numeric"
+                },
+                "3": {
+                    "name": "string"
+                }
+            }
+        },
+        "signal_encoding_type_converter_physical": {
+            "match": "(physical_value)\\s*,\\s*((?:0x[0-9]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9]+)|(?:[0-9]+(?:\\.[0-9]+)?))\\s*,\\s*((?:0x[0-9]+)|(?:[0-9]+(?:\\.[0-9]+)?))\\s*(?:,\\s*(\"[\\w ]*\"))?\\s*;",
+            "captures": {
+                "1": {
+                    "name": "variable.parameter"
+                },
+                "2": {
+                    "name": "constant.numeric"
+                },
+                "3": {
+                    "name": "constant.numeric"
+                },
+                "4": {
+                    "name": "constant.numeric"
+                },
+                "5": {
+                    "name": "constant.numeric"
+                },
+                "6": {
+                    "name": "string"
+                }
+            }
+        },
+        "signal_representations": {
+            "begin": "(Signal_representation)\\s*{",
+            "captures": {
+                "1": {
+                    "name": "support.class"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#signal_representation"
+                }
+            ],
+            "end": "\\s*}"
+        },
+        "signal_representation": {
+            "begin": "(\\w+)\\s*:\\s*(\\w+)\\s*(?:,)?",
+            "captures": {
+                "1": {
+                    "name": "support.function"
+                },
+                "2": {
+                    "name": "variable.parameter"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#ldf_reference"
+                }
+            ],
+            "end": "\\s*;"
+        },
+        "ldf_reference": {
+            "match": "(\\w+)",
+            "name": "variable.parameter"
+        },
+        "ldf_identifier": {
+            "match": "(\\w+)",
+            "name": "string"
+        },
+        "ldf_version": {
+            "match": "[0-9]{1,2}\\.[0-9]{1,2}",
+            "name": "constant.numeric"
+        },
+        "ldf_integer": {
+            "match": "[0-9]",
+            "name": "constant.numeric"
+        },
+        "ldf_float": {
+            "match": "[0-9]+(\\.[0-9]+)?",
+            "name": "constant.numeric"
+        },
+        "comment": {
+            "patterns": [
+                {
+                    "include": "#comment_line"
+                },
+                {
+                    "include": "#comment_block"
+                }
+            ]
+        },
+        "comment_line": {
+            "match": "\/\/.*",
+            "name": "comment.line"
+        },
+        "comment_block": {
+            "begin": "\/\\*",
+            "end": "\\*\\/",
+            "name": "comment.block"
+        }
+    }
+}

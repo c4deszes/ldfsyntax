@@ -1,0 +1,59 @@
+{
+    "LDF Header": {
+        "prefix": ["ldf-header"],
+        "body": [
+            "LIN_description_file;",
+            "LIN_protocol_version = \"${1|1.3,2.0,2.1,2.2|}\";",
+            "LIN_language_version = \"${2|1.3,2.0,2.1,2.2|}\";",
+            "LIN_speed = ${3:speed} kbps;",
+            "Channel_name = \"${4:channel}\";",
+            "$0"
+        ],
+        "description": "Generates LDF header section."
+    },
+    "LDF Nodes": {
+        "prefix": ["ldf-nodes"],
+        "body": [
+            "Nodes {",
+            "\tMaster: ${1:name}, ${2:timebase} ms, ${3:jitter} ms;",
+            "\tSlaves: ${4:slave};",
+            "}",
+            "$0"
+        ],
+        "description": "Generates LDF nodes section."
+    },
+    "LDF Signals": {
+        "prefix": ["ldf-signals"],
+        "body": [
+            "Signals {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Generated LDF signals section."
+    },
+    "LDF Signal": {
+        "prefix": ["ldf-signal"],
+        "body": [
+            "${1:name}: ${2:size}, ${3:initial_value}, ${4:publisher}, ${5:subscriber};"
+        ],
+        "description": "Generated a new LIN signal."
+    },
+    "LDF Frames": {
+        "prefix": ["ldf-frames"],
+        "body": [
+            "Frames {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Generates LDF frames section."
+    },
+    "LDF Frame": {
+        "prefix": ["ldf-frame"],
+        "body": [
+            "${1:name}: ${2:frame_id}, ${3:publisher}, ${4:size} {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Generates a new LIN frame."
+    }
+}
