@@ -48,7 +48,7 @@
         "snippets": [
             {
                 "language": "ldf",
-                "path": "./snippets/snippets.json"
+                "path": "./snippets/ldf.json"
             }
         ]
     },
