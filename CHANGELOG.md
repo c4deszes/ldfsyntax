@@ -6,9 +6,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.2.0] - 2021-11-02
+
+### Added
+
+- Node attributes section is now highlighted
+- Ascii and Bcd encoders are highlighted properly
+
 ### Fixed
 
 - Fixed snippets path
+- Fixed snippet image path in README
 
 ## [0.1.0] - 2021-11-01
 
