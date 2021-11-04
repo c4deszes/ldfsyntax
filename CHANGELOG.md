@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Added
+
+- LDF language included within markdown blocks are highlighted
+
 ## [0.2.0] - 2021-11-02
 
 ### Added
