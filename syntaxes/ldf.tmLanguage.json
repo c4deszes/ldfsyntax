@@ -1,5 +1,6 @@
 {
     "scopeName": "source.ldf",
+    "injectionSelector": "L:text.html.markdown",
     "patterns": [
         {
             "include": "#comment"

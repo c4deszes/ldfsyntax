@@ -7,7 +7,7 @@
         "lin"
     ],
     "license": "MIT",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "preview": true,
     "publisher": "c4deszes",
     "repository": {
@@ -42,7 +42,13 @@
             {
                 "language": "ldf",
                 "scopeName": "source.ldf",
-                "path": "./syntaxes/ldf.tmLanguage.json"
+                "path": "./syntaxes/ldf.tmLanguage.json",
+                "injectTo": [
+                    "text.html.markdown"
+                ],
+                "embeddedLanguages": {
+                    "meta.embedded.block.ldf": "ldf"
+                }
             }
         ],
         "snippets": [
