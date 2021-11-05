@@ -87,7 +87,7 @@ Node_attributes {
         }
     }
     remote_node {
-        LIN_protocol = "2.1" ;
+        LIN_protocol = 2.1;
         configured_NAD = 0x20 ;
         product_id = 0x5, 0xA5A5, 0 ;
         P2_min = 50 ms ;

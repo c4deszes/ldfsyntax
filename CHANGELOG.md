@@ -10,6 +10,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - LDF language included within markdown blocks are highlighted
 
+### Fixed
+
+- `protocol_version` node attribute is properly highlighted when quotes are missing
+
 ## [0.2.0] - 2021-11-02
 
 ### Added
