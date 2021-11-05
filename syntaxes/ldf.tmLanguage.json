@@ -1,4 +1,5 @@
 {
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
     "scopeName": "source.ldf",
     "injectionSelector": "L:text.html.markdown",
     "patterns": [
@@ -344,7 +345,7 @@
             "end": "\\s*}"
         },
         "node_definition_protocol": {
-            "match": "(LIN_protocol)\\s*=\\s*(?:(\"[0-9]+\\.[0-9]+\")|([0-9]+\\.[0-9]+))\\s*;",
+            "match": "(LIN_protocol)\\s*=\\s*((?:\"[0-9]+\\.[0-9]+\")|(?:[0-9]+\\.[0-9]+))\\s*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
