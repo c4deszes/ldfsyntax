@@ -31,11 +31,13 @@
             {
                 "id": "ldf",
                 "aliases": [
-                    "LIN Description File"
+                    "LIN Description File",
+                    "LDF"
                 ],
                 "extensions": [
                     ".ldf"
-                ]
+                ],
+                "configuration": "./syntaxes/ldf.configuration.json"
             }
         ],
         "grammars": [

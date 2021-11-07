@@ -6,6 +6,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Added
+
+- Support for bracket autoclosing, folding
+- Support for comment toggling commands
+
 ## [0.3.1] - 2021-11-05
 
 ### Added
