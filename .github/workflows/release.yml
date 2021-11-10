@@ -5,7 +5,8 @@ on:
     types: [published]
 
 jobs:
-  release:
+  release-vsce:
+    name: Release on VS Marketplace
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,7 +20,27 @@ jobs:
       - name: Install
         run: npm install
 
-      - name: Deploy
-        run: npm run deploy
+      - name: Deploy using VSCE
+        run: npm run deploy-vsce
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+  release-ovsx:
+    name: Release on Open VSX
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+
+      - name: Install
+        run: npm install
+
+      - name: Deploy using OVSX
+        run: npm run deploy-ovsx
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}

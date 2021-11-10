@@ -66,7 +66,8 @@
         "watch": "webpack --watch",
         "package": "webpack --mode production --devtool hidden-source-map",
         "package-vsix": "vsce package",
-        "deploy": "vsce publish --yarn",
+        "deploy-vsce": "vsce publish --yarn",
+        "deploy-ovsx": "npx ovsx publish",
         "test-compile": "tsc -p ./",
         "test-watch": "tsc -watch -p ./",
         "pretest": "npm run test-compile && npm run lint",
@@ -90,6 +91,7 @@
         "vscode-test": "^1.5.2",
         "webpack": "^5.38.1",
         "webpack-cli": "^4.7.0",
-        "yarn": "^1.22.17"
+        "yarn": "^1.22.17",
+        "ovsx": "^0.2.1"
     }
 }
