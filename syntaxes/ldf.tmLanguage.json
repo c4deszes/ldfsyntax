@@ -37,6 +37,9 @@
             "include": "#diagnostic_signals"
         },
         {
+            "include": "#diagnostic_frames"
+        },
+        {
             "include": "#node_attributes"
         },
         {
@@ -310,6 +313,54 @@
                     "name": "constant.numeric"
                 },
                 "3": {
+                    "name": "constant.numeric"
+                }
+            }
+        },
+        "diagnostic_frames": {
+            "begin": "(Diagnostic_frames)\\s*{",
+            "captures": {
+                "1": {
+                    "name": "support.class"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#diagnostic_frame_definition"
+                }
+            ],
+            "end": "\\s*}"
+        },
+        "diagnostic_frame_definition": {
+            "begin": "(\\w+)\\s*:\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*{",
+            "captures": {
+                "1": {
+                    "name": "support.function"
+                },
+                "2": {
+                    "name": "constant.numeric"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#diagnostic_frame_signal"
+                }
+            ],
+            "end": "\\s*}"
+        },
+        "diagnostic_frame_signal": {
+            "match": "(\\w+)\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*;",
+            "captures": {
+                "1": {
+                    "name": "variable.parameter"
+                },
+                "2": {
                     "name": "constant.numeric"
                 }
             }
