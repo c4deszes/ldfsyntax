@@ -37,8 +37,8 @@ export function activate(context: vscode.ExtensionContext) {
     };
 
     client = new LanguageClient(
-        'languageServerExample',
-        'Language Server Example',
+        'ldf-lsp',
+        'LDF Language Server',
         serverOptions,
         clientOptions
     );
