@@ -633,7 +633,7 @@
                     "include": "#schedule_table_masterreq"
                 },
                 {
-                    "include": "schedule_table_slaveresp"
+                    "include": "#schedule_table_slaveresp"
                 },
                 {
                     "include": "#schedule_table_assignnad"
@@ -665,26 +665,30 @@
             ]
         },
         "schedule_table_masterreq": {
-            "match": "MasterReq\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
-            "name": "variable.parameter",
+            "match": "(MasterReq)\\s+(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
             "captures": {
                 "1": {
-                    "name": "keyword.control"
+                    "name": "keyword"
                 },
                 "2": {
+                    "name": "keyword.control"
+                },
+                "3": {
                     "name": "constant.numeric"
                 }
             }
             
         },
         "schedule_table_slaveresp": {
-            "match": "SlaveResp\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
-            "name": "variable.parameter",
+            "match": "(SlaveResp)\\s+(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
             "captures": {
                 "1": {
-                    "name": "keyword.control"
+                    "name": "keyword"
                 },
                 "2": {
+                    "name": "keyword.control"
+                },
+                "3": {
                     "name": "constant.numeric"
                 }
             }
@@ -693,10 +697,10 @@
             "match": "(AssignNAD)\\s*\\{\\s*(\\w+)\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
             "captures": {
                 "1": {
-                    "name": "variable.parameter"
+                    "name": "keyword"
                 },
                 "2": {
-                    "name": "string"
+                    "name": "variable.parameter"
                 },
                 "3": {
                     "name": "keyword.control"
@@ -710,7 +714,7 @@
             "match": "(ConditionalChangeNAD)\\s*\\{\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
             "captures": {
                 "1": {
-                    "name": "variable.parameter"
+                    "name": "keyword"
                 },
                 "2": {
                     "name": "constant.numeric"
@@ -742,10 +746,10 @@
             "match": "(DataDump)\\s*\\{\\s*(\\w+)\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
             "captures": {
                 "1": {
-                    "name": "variable.parameter"
+                    "name": "keyword"
                 },
                 "2": {
-                    "name": "string"
+                    "name": "variable.parameter"
                 },
                 "3": {
                     "name": "constant.numeric"
@@ -774,10 +778,10 @@
             "match": "(SaveConfiguration)\\s*\\{\\s*(\\w+)\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
             "captures": {
                 "1": {
-                    "name": "variable.parameter"
+                    "name": "keyword"
                 },
                 "2": {
-                    "name": "string"
+                    "name": "variable.parameter"
                 },
                 "3": {
                     "name": "keyword.control"
@@ -792,10 +796,10 @@
             "match": "(AssignFrameIdRange)\\s*\\{\\s*(\\w+)\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*(?:,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+)))?\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
             "captures": {
                 "1": {
-                    "name": "variable.parameter"
+                    "name": "keyword"
                 },
                 "2": {
-                    "name": "string"
+                    "name": "variable.parameter"
                 },
                 "3": {
                     "name": "constant.numeric"
@@ -824,13 +828,13 @@
             "match": "(AssignFrameId)\\s*\\{\\s*(\\w+)\\s*\\,\\s*(\\w+)\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
             "captures": {
                 "1": {
-                    "name": "variable.parameter"
+                    "name": "keyword"
                 },
                 "2": {
-                    "name": "string"
+                    "name": "variable.parameter"
                 },
                 "3": {
-                    "name": "string"
+                    "name": "variable.parameter"
                 },
                 "4": {
                     "name": "keyword.control"
@@ -844,13 +848,13 @@
             "match": "(UnassignFrameId)\\s*\\{\\s*(\\w+)\\s*\\,\\s*(\\w+)\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
             "captures": {
                 "1": {
-                    "name": "variable.parameter"
+                    "name": "keyword"
                 },
                 "2": {
-                    "name": "string"
+                    "name": "variable.parameter"
                 },
                 "3": {
-                    "name": "string"
+                    "name": "variable.parameter"
                 },
                 "4": {
                     "name": "keyword.control"
@@ -864,7 +868,7 @@
             "match": "(FreeFormat)\\s*\\{\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
             "captures": {
                 "1": {
-                    "name": "variable.parameter"
+                    "name": "keyword"
                 },
                 "2": {
                     "name": "constant.numeric"
