@@ -2,10 +2,14 @@
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/c4deszes/ldfsyntax)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Visual Studio Marketplace](https://img.shields.io/visual-studio-marketplace/v/c4deszes.ldf-syntax)](https://marketplace.visualstudio.com/items?itemName=c4deszes.ldf-syntax)
-![Visual Studio Marketplace](https://img.shields.io/visual-studio-marketplace/i/c4deszes.ldf-syntax)
 
 > ldfsyntax adds LIN Description File language support to Visual Studio Code
+
+|Release |Status |
+|-|-|
+|Visual Studio Marketplace | [![Visual Studio Marketplace](https://img.shields.io/visual-studio-marketplace/v/c4deszes.ldf-syntax)](https://marketplace.visualstudio.com/items?itemName=c4deszes.ldf-syntax) ![Installs](https://img.shields.io/visual-studio-marketplace/i/c4deszes.ldf-syntax) ![Rating](https://img.shields.io/visual-studio-marketplace/r/c4deszes.ldf-syntax)
+|Open VSX Registry | [![OpenVSX Marketplace](https://img.shields.io/open-vsx/v/c4deszes/ldf-syntax)](https://open-vsx.org/extension/c4deszes/ldf-syntax) ![Downloads](https://img.shields.io/open-vsx/dt/c4deszes/ldf-syntax) ![Rating](https://img.shields.io/open-vsx/rating/c4deszes/ldf-syntax)
+| Trunk | ![Version](https://img.shields.io/github/package-json/v/c4deszes/ldfsyntax) ![Build](https://img.shields.io/github/workflow/status/c4deszes/ldfsyntax/Build/master)
 
 ---
 

@@ -6,6 +6,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.4.1] - 2021-11-15
+
+### Fixed
+
+- Hexadecimal values accept lowercase characters
+
 ## [0.4.0] - 2021-11-15
 
 ### Added
