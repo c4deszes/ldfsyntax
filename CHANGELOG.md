@@ -6,10 +6,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.4.0] - 2021-11-15
+
 ### Added
 
 - Support for bracket autoclosing, folding
 - Support for comment toggling commands
+- Diagnostic frames/signals and Schedule tables are now highlighted
 
 ## [0.3.1] - 2021-11-05
 
