@@ -34,7 +34,16 @@
             "include": "#event_triggered_frames"
         },
         {
+            "include": "#diagnostic_signals"
+        },
+        {
+            "include": "#diagnostic_frames"
+        },
+        {
             "include": "#node_attributes"
+        },
+        {
+            "include": "#shedule_tables"
         },
         {
             "include": "#signal_encoding_types"
@@ -161,7 +170,7 @@
             "end": "\\s*}"
         },
         "signal_definition": {
-            "begin": "(\\w+)\\s*:\\s*((?:0x[0-9]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*(\\w+)\\s*(?:,)?",
+            "begin": "(\\w+)\\s*:\\s*((?:0x[0-9]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*(\\w+)\\s*(?:,)?",
             "captures": {
                 "1": {
                     "name": "support.function"
@@ -204,7 +213,7 @@
             "end": "\\s*}"
         },
         "frame_definition": {
-            "begin": "(\\w+)\\s*:\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*(\\w+)\\s*(?:,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+)))?\\s*{",
+            "begin": "(\\w+)\\s*:\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*(\\w+)\\s*(?:,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+)))?\\s*{",
             "captures": {
                 "1": {
                     "name": "support.function"
@@ -230,7 +239,7 @@
             "end": "\\s*}"
         },
         "frame_signal": {
-            "match": "(\\w+)\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*;",
+            "match": "(\\w+)\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -258,7 +267,7 @@
             "end": "\\s*}"
         },
         "event_triggered_frames_definition": {
-            "begin": "(\\w+)\\s*:\\s*(\\w+)\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*(\\w+)\\s*(?:,)?",
+            "begin": "(\\w+)\\s*:\\s*(\\w+)\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*(\\w+)\\s*(?:,)?",
             "captures": {
                 "1": {
                     "name": "support.function"
@@ -279,6 +288,85 @@
                 }
             ],
             "end": "\\s*;"
+        },
+        "diagnostic_signals": {
+            "begin": "(Diagnostic_signals)\\s*{",
+            "captures": {
+                "1": {
+                    "name": "support.class"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#diagnostic_signal_definition"
+                }
+            ],
+            "end": "\\s*}"
+        },
+        "diagnostic_signal_definition": {
+            "match": "(\\w+)\\s*:\\s*((?:0x[0-9]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*;",
+            "captures": {
+                "1": {
+                    "name": "support.function"
+                },
+                "2": {
+                    "name": "constant.numeric"
+                },
+                "3": {
+                    "name": "constant.numeric"
+                }
+            }
+        },
+        "diagnostic_frames": {
+            "begin": "(Diagnostic_frames)\\s*{",
+            "captures": {
+                "1": {
+                    "name": "support.class"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#diagnostic_frame_definition"
+                }
+            ],
+            "end": "\\s*}"
+        },
+        "diagnostic_frame_definition": {
+            "begin": "(\\w+)\\s*:\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*{",
+            "captures": {
+                "1": {
+                    "name": "support.function"
+                },
+                "2": {
+                    "name": "constant.numeric"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#diagnostic_frame_signal"
+                }
+            ],
+            "end": "\\s*}"
+        },
+        "diagnostic_frame_signal": {
+            "match": "(\\w+)\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*;",
+            "captures": {
+                "1": {
+                    "name": "variable.parameter"
+                },
+                "2": {
+                    "name": "constant.numeric"
+                }
+            }
         },
         "node_attributes": {
             "begin": "(Node_attributes)\\s*{",
@@ -356,7 +444,7 @@
             }
         },
         "node_definition_configured_nad": {
-            "match": "(configured_NAD)\\s*=\\s*(?:(0x[0-9A-F]+)|([0-9]+))\\s*;",
+            "match": "(configured_NAD)\\s*=\\s*(?:(0x[0-9a-fA-F]+)|([0-9]+))\\s*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -367,7 +455,7 @@
             }
         },
         "node_definition_initial_nad": {
-            "match": "(initial_NAD)\\s*=\\s*(?:(0x[0-9A-F]+)|([0-9]+))\\s*;",
+            "match": "(initial_NAD)\\s*=\\s*(?:(0x[0-9a-fA-F]+)|([0-9]+))\\s*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -378,7 +466,7 @@
             }
         },
         "node_definition_product_id": {
-            "match": "(product_id)\\s*=\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*(?:,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+)))?\\s*;",
+            "match": "(product_id)\\s*=\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*(?:,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+)))?\\s*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -484,7 +572,7 @@
             "end": "\\s*}"
         },
         "node_definition_configurable_frames_20": {
-            "match": "(\\w+)\\s*=\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*;",
+            "match": "(\\w+)\\s*=\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*;",
             "captures": {
                 "1": {
                     "name": "string"
@@ -499,6 +587,332 @@
             "captures": {
                 "1": {
                     "name": "string"
+                }
+            }
+        },
+        "shedule_tables": {
+            "begin": "(Schedule_tables)\\s*{",
+            "captures": {
+                "1": {
+                    "name": "support.class"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#shedule_table"
+                }
+            ],
+            "end": "\\s*}"
+        },
+        "shedule_table": {
+            "begin": "(\\w+)\\s*{",
+            "captures": {
+                "1": {
+                    "name": "support.function"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#schedule_table_entry"
+                }
+            ],
+            "end": "\\s*}"
+        },
+        "schedule_table_entry": {
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#schedule_table_masterreq"
+                },
+                {
+                    "include": "#schedule_table_slaveresp"
+                },
+                {
+                    "include": "#schedule_table_assignnad"
+                },
+                {
+                    "include": "#schedule_table_conditionalchangenad"
+                },
+                {
+                    "include": "#schedule_table_datadump"
+                },
+                {
+                    "include": "#schedule_table_saveconfiguration"
+                },
+                {
+                    "include": "#schedule_table_assignframeidrange"
+                },
+                {
+                    "include": "#schedule_table_assignframeid"
+                },
+                {
+                    "include": "#schedule_table_unassignframeid"
+                },
+                {
+                    "include": "#schedule_table_freeformat"
+                },
+                {
+                    "include": "#schedule_table_frame"
+                }
+            ]
+        },
+        "schedule_table_masterreq": {
+            "match": "(MasterReq)\\s+(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "captures": {
+                "1": {
+                    "name": "keyword"
+                },
+                "2": {
+                    "name": "keyword.control"
+                },
+                "3": {
+                    "name": "constant.numeric"
+                }
+            }
+            
+        },
+        "schedule_table_slaveresp": {
+            "match": "(SlaveResp)\\s+(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "captures": {
+                "1": {
+                    "name": "keyword"
+                },
+                "2": {
+                    "name": "keyword.control"
+                },
+                "3": {
+                    "name": "constant.numeric"
+                }
+            }
+        },
+        "schedule_table_assignnad": {
+            "match": "(AssignNAD)\\s*\\{\\s*(\\w+)\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "captures": {
+                "1": {
+                    "name": "keyword"
+                },
+                "2": {
+                    "name": "variable.parameter"
+                },
+                "3": {
+                    "name": "keyword.control"
+                },
+                "4": {
+                    "name": "constant.numeric"
+                }
+            }
+        },
+        "schedule_table_conditionalchangenad": {
+            "match": "(ConditionalChangeNAD)\\s*\\{\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "captures": {
+                "1": {
+                    "name": "keyword"
+                },
+                "2": {
+                    "name": "constant.numeric"
+                },
+                "3": {
+                    "name": "constant.numeric"
+                },
+                "4": {
+                    "name": "constant.numeric"
+                },
+                "5": {
+                    "name": "constant.numeric"
+                },
+                "6": {
+                    "name": "constant.numeric"
+                },
+                "7": {
+                    "name": "constant.numeric"
+                },
+                "8": {
+                    "name": "keyword.control"
+                },
+                "9": {
+                    "name": "constant.numeric"
+                }
+            }
+        },
+        "schedule_table_datadump": {
+            "match": "(DataDump)\\s*\\{\\s*(\\w+)\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "captures": {
+                "1": {
+                    "name": "keyword"
+                },
+                "2": {
+                    "name": "variable.parameter"
+                },
+                "3": {
+                    "name": "constant.numeric"
+                },
+                "4": {
+                    "name": "constant.numeric"
+                },
+                "5": {
+                    "name": "constant.numeric"
+                },
+                "6": {
+                    "name": "constant.numeric"
+                },
+                "7": {
+                    "name": "constant.numeric"
+                },
+                "8": {
+                    "name": "keyword.control"
+                },
+                "9": {
+                    "name": "constant.numeric"
+                }
+            }
+        },
+        "schedule_table_saveconfiguration": {
+            "match": "(SaveConfiguration)\\s*\\{\\s*(\\w+)\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "captures": {
+                "1": {
+                    "name": "keyword"
+                },
+                "2": {
+                    "name": "variable.parameter"
+                },
+                "3": {
+                    "name": "keyword.control"
+                },
+                "4": {
+                    "name": "constant.numeric"
+                }
+            }
+        },
+
+        "schedule_table_assignframeidrange": {
+            "match": "(AssignFrameIdRange)\\s*\\{\\s*(\\w+)\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*(?:,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+)))?\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "captures": {
+                "1": {
+                    "name": "keyword"
+                },
+                "2": {
+                    "name": "variable.parameter"
+                },
+                "3": {
+                    "name": "constant.numeric"
+                },
+                "4": {
+                    "name": "constant.numeric"
+                },
+                "5": {
+                    "name": "constant.numeric"
+                },
+                "6": {
+                    "name": "constant.numeric"
+                },
+                "7": {
+                    "name": "constant.numeric"
+                },
+                "8": {
+                    "name": "keyword.control"
+                },
+                "9": {
+                    "name": "constant.numeric"
+                }
+            }
+        },
+        "schedule_table_assignframeid": {
+            "match": "(AssignFrameId)\\s*\\{\\s*(\\w+)\\s*\\,\\s*(\\w+)\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "captures": {
+                "1": {
+                    "name": "keyword"
+                },
+                "2": {
+                    "name": "variable.parameter"
+                },
+                "3": {
+                    "name": "variable.parameter"
+                },
+                "4": {
+                    "name": "keyword.control"
+                },
+                "5": {
+                    "name": "constant.numeric"
+                }
+            }
+        },
+        "schedule_table_unassignframeid": {
+            "match": "(UnassignFrameId)\\s*\\{\\s*(\\w+)\\s*\\,\\s*(\\w+)\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "captures": {
+                "1": {
+                    "name": "keyword"
+                },
+                "2": {
+                    "name": "variable.parameter"
+                },
+                "3": {
+                    "name": "variable.parameter"
+                },
+                "4": {
+                    "name": "keyword.control"
+                },
+                "5": {
+                    "name": "constant.numeric"
+                }
+            }
+        },
+        "schedule_table_freeformat": {
+            "match": "(FreeFormat)\\s*\\{\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "captures": {
+                "1": {
+                    "name": "keyword"
+                },
+                "2": {
+                    "name": "constant.numeric"
+                },
+                "3": {
+                    "name": "constant.numeric"
+                },
+                "4": {
+                    "name": "constant.numeric"
+                },
+                "5": {
+                    "name": "constant.numeric"
+                },
+                "6": {
+                    "name": "constant.numeric"
+                },
+                "7": {
+                    "name": "constant.numeric"
+                },
+                "8": {
+                    "name": "constant.numeric"
+                },
+                "9": {
+                    "name": "constant.numeric"
+                },
+                "10": {
+                    "name": "keyword.control"
+                },
+                "11": {
+                    "name": "constant.numeric"
+                }
+            }
+        },
+        "schedule_table_frame": {
+            "match": "(\\w+)\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "captures": {
+                "1": {
+                    "name": "variable.parameter"
+                },
+                "2": {
+                    "name": "keyword.control"
+                },
+                "3": {
+                    "name": "constant.numeric"
                 }
             }
         },
@@ -556,7 +970,7 @@
             ]
         },
         "signal_encoding_type_converter_logical": {
-            "match": "(logical_value)\\s*,\\s*((?:0x[0-9A-F]+)|(?:[0-9]+))\\s*(?:,\\s*(\"[\\w ]*\"))?\\s*;",
+            "match": "(logical_value)\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*(?:,\\s*(\"[^\"]*\"))?\\s*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -570,7 +984,7 @@
             }
         },
         "signal_encoding_type_converter_physical": {
-            "match": "(physical_value)\\s*,\\s*((?:0x[0-9A-F]+)|(?:-?[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:-?[0-9]+))\\s*,\\s*((?:0x[0-9A-F]+)|(?:-?[0-9]+(?:\\.[0-9]+)?))\\s*,\\s*((?:0x[0-9A-F]+)|(?:-?[0-9]+(?:\\.[0-9]+)?))\\s*(?:,\\s*(\"[\\w\\/ ]*\"))?\\s*;",
+            "match": "(physical_value)\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:-?[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:-?[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:-?[0-9]+(?:\\.[0-9]+)?))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:-?[0-9]+(?:\\.[0-9]+)?))\\s*(?:,\\s*(\"[^\"]*\"))?\\s*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
