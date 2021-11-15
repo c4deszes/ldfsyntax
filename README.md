@@ -25,8 +25,6 @@ __TODO__: insert animation of snippet usage
 
 ## Known Issues
 
-+ Schedule tables are not highlighted
-
 + Certain LIN 1.3 standard sections are not highlighted
 
 ## Helpful links for development
