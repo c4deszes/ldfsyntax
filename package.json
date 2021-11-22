@@ -27,6 +27,17 @@
     ],
     "main": "./dist/extension.js",
     "contributes": {
+        "configuration": {
+            "title": "ldf-syntax-configuration",
+            "properties": {
+                "languageServerMaxProblems": {
+                    "scope": "resource",
+                    "type": "number",
+                    "default": 100,
+                    "description": ""
+                }
+            }
+        },
         "languages": [
             {
                 "id": "ldf",
@@ -93,5 +104,8 @@
         "webpack-cli": "^4.7.0",
         "yarn": "^1.22.17",
         "ovsx": "^0.2.1"
+    },
+    "dependencies": {
+        "vscode-languageclient": "^7.0.0"
     }
 }
