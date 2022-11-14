@@ -49,6 +49,10 @@ __TODO__: insert animation of snippet usage
 
 + [Document symbol provider example](https://github.com/svaberg/SWMF-grammar/blob/master/src/extension.ts)
 
++ [pygls documentation](https://pygls.readthedocs.io/en/latest/pages/getting_started.html)
+
++ [Language Server using pygls](https://github.com/openlawlibrary/pygls/blob/master/examples/json-extension/server/server.py)
+
 ---
 
 ## License
