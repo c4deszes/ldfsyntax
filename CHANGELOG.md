@@ -6,6 +6,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.4.2] - 2022-11-14
+
+### Fixed
+
+- Newline characters `\r\n` are now accepted in most locations where whitespace is allowed
+
 ## [0.4.1] - 2021-11-15
 
 ### Fixed

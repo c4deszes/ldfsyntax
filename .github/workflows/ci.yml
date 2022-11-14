@@ -1,0 +1,133 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - v*
+  pull_request:
+    paths-ignore:
+      - '*.md'
+      - '**/*.md'
+      - 'docs/**.*'
+
+jobs:
+  test:
+    name: Test
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 10.x
+
+    - name: Install
+      run: npm install
+
+    - name: Test (Linux)
+      if: runner.os == 'Linux'
+      run: xvfb-run -a npm test
+
+    - name: Test (Windows & Mac)
+      run: npm test
+      if: runner.os != 'Linux'
+
+  package:
+    name: Package
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 10.x
+
+    - name: Install
+      run: npm install
+
+    - name: Package
+      run: npm run package-vsix
+
+    - name: Archive
+      uses: actions/upload-artifact@v3
+      with:
+        name: extension
+        path: '*.vsix'
+        if-no-files-found: error
+
+  release-vsce:
+    name: Release on VS Marketplace
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 10.x
+
+      - name: Install
+        run: npm install
+
+      - name: Deploy using VSCE
+        run: npm run deploy-vsce
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+  release-ovsx:
+    name: Release on Open VSX
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 10.x
+
+      - name: Install
+        run: npm install
+
+      - name: Deploy using OVSX
+        run: npm run deploy-ovsx
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+
+  release-github:
+    name: Release on Github
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Get version from tag
+        id: tag_name
+        run: echo "current_version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Read Changelog
+        id: changelog
+        uses: mindsers/changelog-reader-action@v2
+        with:
+          validation_level: warn
+          version: ${{ steps.tag_name.outputs.current_version }}
+          path: CHANGELOG.md
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Release ${{ steps.changelog.outputs.version }}
+          body: ${{ steps.changelog.outputs.changes }}

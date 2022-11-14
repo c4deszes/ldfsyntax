@@ -54,11 +54,11 @@
     ],
     "repository": {
         "header_lin_description_file": {
-            "match": "LIN_description_file\\s*;",
+            "match": "LIN_description_file[\\s\\n\\r]*;",
             "name": "keyword.control"
         },
         "header_protocol_version": {
-            "match": "(LIN_protocol_version)\\s*=\\s*(\"[0-9]+\\.[0-9]+\")\\s*;",
+            "match": "(LIN_protocol_version)[\\s\\n\\r]*=[\\s\\n\\r]*(\"[0-9]+\\.[0-9]+\")[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -69,7 +69,7 @@
             }
         },
         "header_language_version": {
-            "match": "(LIN_language_version)\\s*=\\s*(\"[0-9]+\\.[0-9]+\")\\s*;",
+            "match": "(LIN_language_version)[\\s\\n\\r]*=[\\s\\n\\r]*(\"[0-9]+\\.[0-9]+\")[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -80,7 +80,7 @@
             }
         },
         "header_speed": {
-            "match": "(LIN_speed)\\s*=\\s*([0-9]+(?:\\.[0-9]+)?\\s*kbps)\\s*;",
+            "match": "(LIN_speed)[\\s\\n\\r]*=[\\s\\n\\r]*([0-9]+(?:\\.[0-9]+)?[\\s\\n\\r]*kbps)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -91,7 +91,7 @@
             }
         },
         "header_channel": {
-            "match": "(Channel_name)\\s*=\\s*(\"\\w*\")\\s*;",
+            "match": "(Channel_name)[\\s\\n\\r]*=[\\s\\n\\r]*(\"\\w*\")[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -102,7 +102,7 @@
             }
         },
         "nodes": {
-            "begin": "(Nodes)\\s*{",
+            "begin": "(Nodes)[\\s\\n\\r]*{",
             "captures": {
                 "1": {
                     "name": "support.class"
@@ -119,10 +119,10 @@
                     "include": "#nodes_slaves"
                 }
             ],
-            "end": "\\s*}"
+            "end": "[\\s\\n\\r]*}"
         },
         "nodes_master": {
-            "match": "(Master)\\s*:\\s*(\\w+)\\s*,\\s*([0-9]+(\\.[0-9]+)?\\s*ms)\\s*,\\s*([0-9]+(\\.[0-9]+)?\\s*ms)\\s*;",
+            "match": "(Master)[\\s\\n\\r]*:[\\s\\n\\r]*(\\w+)[\\s\\n\\r]*,[\\s\\n\\r]*([0-9]+(\\.[0-9]+)?[\\s\\n\\r]*ms)[\\s\\n\\r]*,[\\s\\n\\r]*([0-9]+(\\.[0-9]+)?[\\s\\n\\r]*ms)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "support.function"
@@ -139,7 +139,7 @@
             }
         },
         "nodes_slaves": {
-            "begin": "(Slaves)\\s*:\\s*",
+            "begin": "(Slaves)[\\s\\n\\r]*:[\\s\\n\\r]*",
             "captures": {
                 "1": {
                     "name": "support.function"
@@ -150,10 +150,10 @@
                     "include": "#ldf_identifier"
                 }
             ],
-            "end": "\\s*;"
+            "end": "[\\s\\n\\r]*;"
         },
         "signals": {
-            "begin": "(Signals)\\s*{",
+            "begin": "(Signals)[\\s\\n\\r]*{",
             "captures": {
                 "1": {
                     "name": "support.class"
@@ -167,10 +167,10 @@
                     "include": "#signal_definition"
                 }
             ],
-            "end": "\\s*}"
+            "end": "[\\s\\n\\r]*}"
         },
         "signal_definition": {
-            "begin": "(\\w+)\\s*:\\s*((?:0x[0-9]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*(\\w+)\\s*(?:,)?",
+            "begin": "(\\w+)[\\s\\n\\r]*:[\\s\\n\\r]*((?:0x[0-9]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*(\\w+)[\\s\\n\\r]*(?:,)?",
             "captures": {
                 "1": {
                     "name": "support.function"
@@ -193,10 +193,10 @@
                     "include": "#ldf_identifier"
                 }
             ],
-            "end": "\\s*;"
+            "end": "[\\s\\n\\r]*;"
         },
         "frames": {
-            "begin": "(Frames)\\s*{",
+            "begin": "(Frames)[\\s\\n\\r]*{",
             "captures": {
                 "1": {
                     "name": "support.class"
@@ -210,10 +210,10 @@
                     "include": "#frame_definition"
                 }
             ],
-            "end": "\\s*}"
+            "end": "[\\s\\n\\r]*}"
         },
         "frame_definition": {
-            "begin": "(\\w+)\\s*:\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*(\\w+)\\s*(?:,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+)))?\\s*{",
+            "begin": "(\\w+)[\\s\\n\\r]*:[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*(\\w+)[\\s\\n\\r]*(?:,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+)))?[\\s\\n\\r]*{",
             "captures": {
                 "1": {
                     "name": "support.function"
@@ -236,10 +236,10 @@
                     "include": "#frame_signal"
                 }
             ],
-            "end": "\\s*}"
+            "end": "[\\s\\n\\r]*}"
         },
         "frame_signal": {
-            "match": "(\\w+)\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*;",
+            "match": "(\\w+)[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -250,7 +250,7 @@
             }
         },
         "event_triggered_frames": {
-            "begin": "(Event_triggered_frames)\\s*{",
+            "begin": "(Event_triggered_frames)[\\s\\n\\r]*{",
             "captures": {
                 "1": {
                     "name": "support.class"
@@ -264,10 +264,10 @@
                     "include": "#event_triggered_frames_definition"
                 }
             ],
-            "end": "\\s*}"
+            "end": "[\\s\\n\\r]*}"
         },
         "event_triggered_frames_definition": {
-            "begin": "(\\w+)\\s*:\\s*(\\w+)\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*(\\w+)\\s*(?:,)?",
+            "begin": "(\\w+)[\\s\\n\\r]*:[\\s\\n\\r]*(\\w+)[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*(\\w+)[\\s\\n\\r]*(?:,)?",
             "captures": {
                 "1": {
                     "name": "support.function"
@@ -287,10 +287,10 @@
                     "include": "#ldf_identifier"
                 }
             ],
-            "end": "\\s*;"
+            "end": "[\\s\\n\\r]*;"
         },
         "diagnostic_signals": {
-            "begin": "(Diagnostic_signals)\\s*{",
+            "begin": "(Diagnostic_signals)[\\s\\n\\r]*{",
             "captures": {
                 "1": {
                     "name": "support.class"
@@ -304,10 +304,10 @@
                     "include": "#diagnostic_signal_definition"
                 }
             ],
-            "end": "\\s*}"
+            "end": "[\\s\\n\\r]*}"
         },
         "diagnostic_signal_definition": {
-            "match": "(\\w+)\\s*:\\s*((?:0x[0-9]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*;",
+            "match": "(\\w+)[\\s\\n\\r]*:[\\s\\n\\r]*((?:0x[0-9]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "support.function"
@@ -321,7 +321,7 @@
             }
         },
         "diagnostic_frames": {
-            "begin": "(Diagnostic_frames)\\s*{",
+            "begin": "(Diagnostic_frames)[\\s\\n\\r]*{",
             "captures": {
                 "1": {
                     "name": "support.class"
@@ -335,10 +335,10 @@
                     "include": "#diagnostic_frame_definition"
                 }
             ],
-            "end": "\\s*}"
+            "end": "[\\s\\n\\r]*}"
         },
         "diagnostic_frame_definition": {
-            "begin": "(\\w+)\\s*:\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*{",
+            "begin": "(\\w+)[\\s\\n\\r]*:[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*{",
             "captures": {
                 "1": {
                     "name": "support.function"
@@ -355,10 +355,10 @@
                     "include": "#diagnostic_frame_signal"
                 }
             ],
-            "end": "\\s*}"
+            "end": "[\\s\\n\\r]*}"
         },
         "diagnostic_frame_signal": {
-            "match": "(\\w+)\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*;",
+            "match": "(\\w+)[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -369,7 +369,7 @@
             }
         },
         "node_attributes": {
-            "begin": "(Node_attributes)\\s*{",
+            "begin": "(Node_attributes)[\\s\\n\\r]*{",
             "captures": {
                 "1": {
                     "name": "support.class"
@@ -383,10 +383,10 @@
                     "include": "#node_definition"
                 }
             ],
-            "end": "\\s*}"
+            "end": "[\\s\\n\\r]*}"
         },
         "node_definition": {
-            "begin": "(\\w+)\\s*{",
+            "begin": "(\\w+)[\\s\\n\\r]*{",
             "captures": {
                 "1": {
                     "name": "support.function"
@@ -430,10 +430,10 @@
                     "include": "#node_definition_configurable_frames"
                 }
             ],
-            "end": "\\s*}"
+            "end": "[\\s\\n\\r]*}"
         },
         "node_definition_protocol": {
-            "match": "(LIN_protocol)\\s*=\\s*((?:\"[0-9]+\\.[0-9]+\")|(?:[0-9]+\\.[0-9]+))\\s*;",
+            "match": "(LIN_protocol)[\\s\\n\\r]*=[\\s\\n\\r]*((?:\"[0-9]+\\.[0-9]+\")|(?:[0-9]+\\.[0-9]+))[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -444,7 +444,7 @@
             }
         },
         "node_definition_configured_nad": {
-            "match": "(configured_NAD)\\s*=\\s*(?:(0x[0-9a-fA-F]+)|([0-9]+))\\s*;",
+            "match": "(configured_NAD)[\\s\\n\\r]*=[\\s\\n\\r]*(?:(0x[0-9a-fA-F]+)|([0-9]+))[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -455,7 +455,7 @@
             }
         },
         "node_definition_initial_nad": {
-            "match": "(initial_NAD)\\s*=\\s*(?:(0x[0-9a-fA-F]+)|([0-9]+))\\s*;",
+            "match": "(initial_NAD)[\\s\\n\\r]*=[\\s\\n\\r]*(?:(0x[0-9a-fA-F]+)|([0-9]+))[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -466,7 +466,7 @@
             }
         },
         "node_definition_product_id": {
-            "match": "(product_id)\\s*=\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*(?:,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+)))?\\s*;",
+            "match": "(product_id)[\\s\\n\\r]*=[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*(?:,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+)))?[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -483,7 +483,7 @@
             }
         },
         "node_definition_response_error": {
-            "match": "(response_error)\\s*=\\s*(\\w*)\\s*;",
+            "match": "(response_error)[\\s\\n\\r]*=[\\s\\n\\r]*(\\w*)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -494,7 +494,7 @@
             }
         },
         "node_definition_fault_state_signals": {
-            "begin": "(fault_state_signals)\\s*=\\s*(\\w+)\\s*(?:,)?",
+            "begin": "(fault_state_signals)[\\s\\n\\r]*=[\\s\\n\\r]*(\\w+)[\\s\\n\\r]*(?:,)?",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -508,10 +508,10 @@
                     "include": "#ldf_identifier"
                 }
             ],
-            "end": "\\s*;"
+            "end": "[\\s\\n\\r]*;"
         },
         "node_definition_p2_min": {
-            "match": "(P2_min)\\s*=\\s*((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "match": "(P2_min)[\\s\\n\\r]*=[\\s\\n\\r]*((?:[0-9]+(?:\\.[0-9]+)?)[\\s\\n\\r]*ms)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -522,7 +522,7 @@
             }
         },
         "node_definition_st_min": {
-            "match": "(ST_min)\\s*=\\s*((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "match": "(ST_min)[\\s\\n\\r]*=[\\s\\n\\r]*((?:[0-9]+(?:\\.[0-9]+)?)[\\s\\n\\r]*ms)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -533,7 +533,7 @@
             }
         },
         "node_definition_n_as_timeout": {
-            "match": "(N_As_timeout)\\s*=\\s*((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "match": "(N_As_timeout)[\\s\\n\\r]*=[\\s\\n\\r]*((?:[0-9]+(?:\\.[0-9]+)?)[\\s\\n\\r]*ms)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -544,7 +544,7 @@
             }
         },
         "node_definition_n_cr_timeout": {
-            "match": "(N_Cr_timeout)\\s*=\\s*((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "match": "(N_Cr_timeout)[\\s\\n\\r]*=[\\s\\n\\r]*((?:[0-9]+(?:\\.[0-9]+)?)[\\s\\n\\r]*ms)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -555,7 +555,7 @@
             }
         },
         "node_definition_configurable_frames": {
-            "begin": "(configurable_frames)\\s*{",
+            "begin": "(configurable_frames)[\\s\\n\\r]*{",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -569,10 +569,10 @@
                     "include": "#node_definition_configurable_frames_21"
                 }
             ],
-            "end": "\\s*}"
+            "end": "[\\s\\n\\r]*}"
         },
         "node_definition_configurable_frames_20": {
-            "match": "(\\w+)\\s*=\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*;",
+            "match": "(\\w+)[\\s\\n\\r]*=[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "string"
@@ -583,7 +583,7 @@
             }
         },
         "node_definition_configurable_frames_21": {
-            "match": "(\\w+)\\s*;",
+            "match": "(\\w+)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "string"
@@ -591,7 +591,7 @@
             }
         },
         "shedule_tables": {
-            "begin": "(Schedule_tables)\\s*{",
+            "begin": "(Schedule_tables)[\\s\\n\\r]*{",
             "captures": {
                 "1": {
                     "name": "support.class"
@@ -605,10 +605,10 @@
                     "include": "#shedule_table"
                 }
             ],
-            "end": "\\s*}"
+            "end": "[\\s\\n\\r]*}"
         },
         "shedule_table": {
-            "begin": "(\\w+)\\s*{",
+            "begin": "(\\w+)[\\s\\n\\r]*{",
             "captures": {
                 "1": {
                     "name": "support.function"
@@ -622,7 +622,7 @@
                     "include": "#schedule_table_entry"
                 }
             ],
-            "end": "\\s*}"
+            "end": "[\\s\\n\\r]*}"
         },
         "schedule_table_entry": {
             "patterns": [
@@ -665,7 +665,7 @@
             ]
         },
         "schedule_table_masterreq": {
-            "match": "(MasterReq)\\s+(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "match": "(MasterReq)\\s+(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)[\\s\\n\\r]*ms)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "keyword"
@@ -680,7 +680,7 @@
             
         },
         "schedule_table_slaveresp": {
-            "match": "(SlaveResp)\\s+(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "match": "(SlaveResp)\\s+(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)[\\s\\n\\r]*ms)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "keyword"
@@ -694,7 +694,7 @@
             }
         },
         "schedule_table_assignnad": {
-            "match": "(AssignNAD)\\s*\\{\\s*(\\w+)\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "match": "(AssignNAD)[\\s\\n\\r]*\\{[\\s\\n\\r]*(\\w+)[\\s\\n\\r]*\\}[\\s\\n\\r]*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)[\\s\\n\\r]*ms)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "keyword"
@@ -711,7 +711,7 @@
             }
         },
         "schedule_table_conditionalchangenad": {
-            "match": "(ConditionalChangeNAD)\\s*\\{\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "match": "(ConditionalChangeNAD)[\\s\\n\\r]*\\{[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*\\}[\\s\\n\\r]*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)[\\s\\n\\r]*ms)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "keyword"
@@ -743,7 +743,7 @@
             }
         },
         "schedule_table_datadump": {
-            "match": "(DataDump)\\s*\\{\\s*(\\w+)\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "match": "(DataDump)[\\s\\n\\r]*\\{[\\s\\n\\r]*(\\w+)[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*\\}[\\s\\n\\r]*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)[\\s\\n\\r]*ms)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "keyword"
@@ -775,7 +775,7 @@
             }
         },
         "schedule_table_saveconfiguration": {
-            "match": "(SaveConfiguration)\\s*\\{\\s*(\\w+)\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "match": "(SaveConfiguration)[\\s\\n\\r]*\\{[\\s\\n\\r]*(\\w+)[\\s\\n\\r]*\\}[\\s\\n\\r]*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)[\\s\\n\\r]*ms)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "keyword"
@@ -793,7 +793,7 @@
         },
 
         "schedule_table_assignframeidrange": {
-            "match": "(AssignFrameIdRange)\\s*\\{\\s*(\\w+)\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*(?:,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+)))?\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "match": "(AssignFrameIdRange)[\\s\\n\\r]*\\{[\\s\\n\\r]*(\\w+)[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*(?:,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+)))?[\\s\\n\\r]*\\}[\\s\\n\\r]*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)[\\s\\n\\r]*ms)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "keyword"
@@ -825,7 +825,7 @@
             }
         },
         "schedule_table_assignframeid": {
-            "match": "(AssignFrameId)\\s*\\{\\s*(\\w+)\\s*\\,\\s*(\\w+)\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "match": "(AssignFrameId)[\\s\\n\\r]*\\{[\\s\\n\\r]*(\\w+)[\\s\\n\\r]*\\,[\\s\\n\\r]*(\\w+)[\\s\\n\\r]*\\}[\\s\\n\\r]*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)[\\s\\n\\r]*ms)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "keyword"
@@ -845,7 +845,7 @@
             }
         },
         "schedule_table_unassignframeid": {
-            "match": "(UnassignFrameId)\\s*\\{\\s*(\\w+)\\s*\\,\\s*(\\w+)\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "match": "(UnassignFrameId)[\\s\\n\\r]*\\{[\\s\\n\\r]*(\\w+)[\\s\\n\\r]*\\,[\\s\\n\\r]*(\\w+)[\\s\\n\\r]*\\}[\\s\\n\\r]*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)[\\s\\n\\r]*ms)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "keyword"
@@ -865,7 +865,7 @@
             }
         },
         "schedule_table_freeformat": {
-            "match": "(FreeFormat)\\s*\\{\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*\\}\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "match": "(FreeFormat)[\\s\\n\\r]*\\{[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*\\}[\\s\\n\\r]*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)[\\s\\n\\r]*ms)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "keyword"
@@ -903,7 +903,7 @@
             }
         },
         "schedule_table_frame": {
-            "match": "(\\w+)\\s*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)\\s*ms)\\s*;",
+            "match": "(\\w+)[\\s\\n\\r]*(delay)\\s+((?:[0-9]+(?:\\.[0-9]+)?)[\\s\\n\\r]*ms)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -917,7 +917,7 @@
             }
         },
         "signal_encoding_types": {
-            "begin": "(Signal_encoding_types)\\s*{",
+            "begin": "(Signal_encoding_types)[\\s\\n\\r]*{",
             "captures": {
                 "1": {
                     "name": "support.class"
@@ -931,10 +931,10 @@
                     "include": "#signal_encoding_type"
                 }
             ],
-            "end": "\\s*}"
+            "end": "[\\s\\n\\r]*}"
         },
         "signal_encoding_type": {
-            "begin": "(\\w+)\\s*{",
+            "begin": "(\\w+)[\\s\\n\\r]*{",
             "captures": {
                 "1": {
                     "name": "support.function"
@@ -948,7 +948,7 @@
                     "include": "#signal_encoding_type_converter"
                 }
             ],
-            "end": "\\s*}"
+            "end": "[\\s\\n\\r]*}"
         },
         "signal_encoding_type_converter": {
             "patterns": [
@@ -970,7 +970,7 @@
             ]
         },
         "signal_encoding_type_converter_logical": {
-            "match": "(logical_value)\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))\\s*(?:,\\s*(\"[^\"]*\"))?\\s*;",
+            "match": "(logical_value)[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:[0-9]+))[\\s\\n\\r]*(?:,[\\s\\n\\r]*(\"[^\"]*\"))?[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -984,7 +984,7 @@
             }
         },
         "signal_encoding_type_converter_physical": {
-            "match": "(physical_value)\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:-?[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:-?[0-9]+))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:-?[0-9]+(?:\\.[0-9]+)?))\\s*,\\s*((?:0x[0-9a-fA-F]+)|(?:-?[0-9]+(?:\\.[0-9]+)?))\\s*(?:,\\s*(\"[^\"]*\"))?\\s*;",
+            "match": "(physical_value)[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:-?[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:-?[0-9]+))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:-?[0-9]+(?:\\.[0-9]+)?))[\\s\\n\\r]*,[\\s\\n\\r]*((?:0x[0-9a-fA-F]+)|(?:-?[0-9]+(?:\\.[0-9]+)?))[\\s\\n\\r]*(?:,[\\s\\n\\r]*(\"[^\"]*\"))?[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -1007,7 +1007,7 @@
             }
         },
         "signal_encoding_type_converter_ascii": {
-            "match": "(ascii_value)\\s*;",
+            "match": "(ascii_value)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -1015,7 +1015,7 @@
             }
         },
         "signal_encoding_type_converter_bcd": {
-            "match": "(bcd_value)\\s*;",
+            "match": "(bcd_value)[\\s\\n\\r]*;",
             "captures": {
                 "1": {
                     "name": "variable.parameter"
@@ -1023,7 +1023,7 @@
             }
         },
         "signal_representations": {
-            "begin": "(Signal_representation)\\s*{",
+            "begin": "(Signal_representation)[\\s\\n\\r]*{",
             "captures": {
                 "1": {
                     "name": "support.class"
@@ -1037,10 +1037,10 @@
                     "include": "#signal_representation"
                 }
             ],
-            "end": "\\s*}"
+            "end": "[\\s\\n\\r]*}"
         },
         "signal_representation": {
-            "begin": "(\\w+)\\s*:\\s*(\\w+)\\s*(?:,)?",
+            "begin": "(\\w+)[\\s\\n\\r]*:[\\s\\n\\r]*(\\w+)[\\s\\n\\r]*(?:,)?",
             "captures": {
                 "1": {
                     "name": "support.function"
@@ -1057,7 +1057,7 @@
                     "include": "#ldf_reference"
                 }
             ],
-            "end": "\\s*;"
+            "end": "[\\s\\n\\r]*;"
         },
         "ldf_reference": {
             "match": "(\\w+)",
